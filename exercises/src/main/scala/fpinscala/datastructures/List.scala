@@ -50,7 +50,12 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
 
 
-  def tail[A](l: List[A]): List[A] = sys.error("todo")
+  def tail[A](l: List[A]): List[A] = {
+    l match {
+      case Cons(_,Nil) => Nil
+      case Cons(x, Cons(y,z)) => Cons(y,z)
+    }
+  }
 
   def setHead[A](l: List[A], h: A): List[A] = sys.error("todo")
 
