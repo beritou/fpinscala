@@ -66,12 +66,10 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   def drop[A](l: List[A], n: Int): List[A] = {
-    l match {
+    if (n <= 0) l
+    else l match {
       case Nil => Nil
-      case Cons(x, Cons(y,z)) => {
-        def removeOne()
-        //recurse
-      }
+      case Cons(_, t) => drop(t, n - 1)
     }
   }
 
