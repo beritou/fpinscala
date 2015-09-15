@@ -52,8 +52,9 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   def tail[A](l: List[A]): List[A] = {
     l match {
+      case Nil => Nil
       case Cons(_,Nil) => Nil
-      case Cons(x, Cons(y,z)) => Cons(y,z)
+      case Cons(_, Cons(y,z)) => Cons(y,z)
     }
   }
 
@@ -64,7 +65,15 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  def drop[A](l: List[A], n: Int): List[A] = sys.error("todo")
+  def drop[A](l: List[A], n: Int): List[A] = {
+    l match {
+      case Nil => Nil
+      case Cons(x, Cons(y,z)) => {
+        def removeOne()
+        //recurse
+      }
+    }
+  }
 
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = sys.error("todo")
 
