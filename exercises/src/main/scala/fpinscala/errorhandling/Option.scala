@@ -22,7 +22,13 @@ sealed trait Option[+A] {
     map(f).getOrElse(None)
   }
 
-  def orElse[B>:A](ob: => Option[B]): Option[B] = sys.error("todo")
+  //TODO: is this correct
+  def orElse[B>:A](ob: => Option[B]): Option[B] = {
+    this match {
+      case None => ob
+      case Some(a) => Some(a)
+    }
+  }
 
   def filter(f: A => Boolean): Option[A] = sys.error("todo")
 }
