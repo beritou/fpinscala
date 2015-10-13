@@ -32,8 +32,7 @@ object RNG {
 
   def nonNegativeInt(rng: RNG): (Int, RNG) = {
     val (randomNumber, theGenerator) = rng.nextInt
-    val numberToReturn = math.abs(randomNumber)
-    (numberToReturn,theGenerator)
+    (math.abs(randomNumber), theGenerator)
   }
 
   def double(rng: RNG): (Double, RNG) = ???
