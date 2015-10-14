@@ -47,7 +47,10 @@ object RNG {
     ((theInt,theDouble), gen2)
   }
 
-  def doubleInt(rng: RNG): ((Double,Int), RNG) = ???
+  def doubleInt(rng: RNG): ((Double,Int), RNG) = {
+    val (tuple,gen) = intDouble(rng)
+    ((tuple.swap), gen)
+  }
 
   def double3(rng: RNG): ((Double,Double,Double), RNG) = ???
 
