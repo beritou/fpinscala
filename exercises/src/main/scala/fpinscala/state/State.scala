@@ -77,6 +77,7 @@ object RNG {
   }
 
   def map2[A,B,C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = {
+    //for crazy compiler error, repalce rng1 with _
     rng1 => {
       val (a, rng2) = ra(rng1)
       val (b, rng3) = rb(rng2)
