@@ -41,6 +41,10 @@ object RNG {
     (nonNeg.toDouble / Int.MaxValue, gen)
   }
 
+  def elegantDouble(rng: RNG): Rand[Double] = {
+    map(nonNegativeInt)(i => i.toDouble / Int.MaxValue.toDouble)
+  }
+
   def intDouble(rng: RNG): ((Int,Double), RNG) = {
     val (theInt, gen) = rng.nextInt
     val (theDouble, gen2) = double(gen)
@@ -71,7 +75,6 @@ object RNG {
     }
     loop(count,rng,List[Int]())
   }
-
 
   def map2[A,B,C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = ???
 
