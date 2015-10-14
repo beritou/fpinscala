@@ -25,7 +25,7 @@ object RNG {
   def unit[A](a: A): Rand[A] =
     rng => (a, rng)
 
-  def map[A,B](s: Rand[A])(f: A => B): Rand[B] =
+  def map[A,B](s: Rand[A])(f: A => B): RNG => (B, RNG) =
     rng => {
       val (a, rng2) = s(rng)
       (f(a), rng2)
@@ -86,17 +86,17 @@ object RNG {
   }
 
   def sequence[A](fs: List[Rand[A]]): Rand[List[A]] = {
-   val randOfListOfA: Rand[List[A]] = unit(List[A]())
-    fs.foldRight(randOfListOfA)((f, acc) => map2(f, acc)(_ :: _))
+    val randOfListOfA: Rand[List[A]] = unit(List[A]())
+    fs.foldRight(randOfListOfA)((f: Rand[A], acc: Rand[List[A]]) => map2(f, acc)(_ :: _))
   }
 
   def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = {
-//   rng1 => {
-//     val (a, rng2) = f(rng1)
-//     g(a)
-//   }
-    //why doesn't this work
-    ???
+   (rng1: RNG) => {
+     val (a, rng2) = f(rng1)
+     g(a)(rng2)
+   }
+//    why doesn't this work
+//    ???
   }
 }
 
