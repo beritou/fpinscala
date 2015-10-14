@@ -90,7 +90,14 @@ object RNG {
     fs.foldRight(randOfListOfA)((f, acc) => map2(f, acc)(_ :: _))
   }
 
-  def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = ???
+  def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = {
+//   rng1 => {
+//     val (a, rng2) = f(rng1)
+//     g(a)
+//   }
+    //why doesn't this work
+    ???
+  }
 }
 
 case class State[S,+A](run: S => (A, S)) {
