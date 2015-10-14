@@ -95,8 +95,6 @@ object RNG {
      val (a, rng2) = f(rng1)
      g(a)(rng2)
    }
-//    why doesn't this work
-//    ???
   }
 }
 
