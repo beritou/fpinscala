@@ -35,7 +35,10 @@ object RNG {
     (math.abs(randomNumber), theGenerator)
   }
 
-  def double(rng: RNG): (Double, RNG) = ???
+  def double(rng: RNG): (Double, RNG) = {
+    val (nonNeg, gen) = nonNegativeInt(rng)
+    (nonNeg.toDouble / Int.MaxValue, gen)
+  }
 
   def intDouble(rng: RNG): ((Int,Double), RNG) = ???
 
