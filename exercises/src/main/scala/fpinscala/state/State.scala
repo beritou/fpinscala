@@ -49,10 +49,16 @@ object RNG {
 
   def doubleInt(rng: RNG): ((Double,Int), RNG) = {
     val (tuple,gen) = intDouble(rng)
+    //this is cool
     ((tuple.swap), gen)
   }
 
-  def double3(rng: RNG): ((Double,Double,Double), RNG) = ???
+  def double3(rng: RNG): ((Double,Double,Double), RNG) = {
+    val (double1, gen) = double(rng)
+    val (double2, gen2) = double(gen)
+    val (double3, gen3) = double(gen2)
+    ((double1,double2,double3),gen3)
+  }
 
   def ints(count: Int)(rng: RNG): (List[Int], RNG) = ???
 
